@@ -63,10 +63,12 @@ def _worker(program: str, conn) -> None:
         conn.close()
 
 
-def run_with_timeout(program: str, timeout_s: float = 5.0) -> tuple[bool, str]:
+def run_with_timeout(program: str, timeout_s: float = 20.0) -> tuple[bool, str]:
     parent_conn, child_conn = mp.Pipe()
-    # "spawn" so we don't inherit torch / CUDA state into the child.
-    ctx = mp.get_context("spawn")
+    # On Linux/Colab, "fork" avoids heavy spawn startup overhead and reduces
+    # false timeouts. Keep "spawn" on macOS for safer process isolation.
+    start_method = "fork" if sys.platform.startswith("linux") else "spawn"
+    ctx = mp.get_context(start_method)
     p = ctx.Process(target=_worker, args=(program, child_conn))
     p.start()
     p.join(timeout_s)
