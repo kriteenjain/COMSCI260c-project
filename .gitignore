@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+results/*.json
+!results/.gitkeep
+.cache/
+hf_cache/
+
+.venv/
+.hf_cache/
+__pycache__/
+results/
