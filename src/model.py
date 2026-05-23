@@ -48,6 +48,8 @@ class LM:
         self.dtype = dtype or _pick_dtype(self.device)
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        # Decoder-only models should left-pad for correct batched generation.
+        self.tokenizer.padding_side = "left"
         if self.tokenizer.pad_token_id is None:
             # Most causal LMs ship without pad token; reuse EOS for batched generation.
             self.tokenizer.pad_token = self.tokenizer.eos_token
