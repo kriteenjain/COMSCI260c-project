@@ -42,23 +42,48 @@ class GenConfig:
 
 
 class LM:
-    def __init__(self, model_name: str, device: str | None = None, dtype: torch.dtype | None = None):
+    def __init__(
+        self,
+        model_name: str,
+        device: str | None = None,
+        dtype: torch.dtype | None = None,
+        model=None,
+        tokenizer=None,
+    ):
+        """Either load a fresh HF model by name, OR wrap a pre-loaded
+        `(model, tokenizer)` pair. The latter path is used by the compression
+        runners (Wanda / AWQ) which mutate or replace the model before eval.
+        """
         self.model_name = model_name
-        self.device = device or _pick_device()
-        self.dtype = dtype or _pick_dtype(self.device)
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        if model is not None and tokenizer is not None:
+            # Caller already loaded (and possibly compressed) the model.
+            self.model = model
+            self.tokenizer = tokenizer
+            try:
+                p = next(self.model.parameters())
+                self.device = device or p.device.type
+                self.dtype = dtype or p.dtype
+            except StopIteration:
+                self.device = device or _pick_device()
+                self.dtype = dtype or _pick_dtype(self.device)
+        else:
+            self.device = device or _pick_device()
+            self.dtype = dtype or _pick_dtype(self.device)
+
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=self.dtype,
+                trust_remote_code=True,
+            ).to(self.device)
+
         # Decoder-only models should left-pad for correct batched generation.
         self.tokenizer.padding_side = "left"
         if self.tokenizer.pad_token_id is None:
             # Most causal LMs ship without pad token; reuse EOS for batched generation.
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype=self.dtype,
-            trust_remote_code=True,
-        ).to(self.device)
         self.model.eval()
 
     @torch.inference_mode()

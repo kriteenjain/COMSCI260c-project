@@ -9,13 +9,17 @@ wrappers plug in later without touching the eval code.
 
 ```
 cs260c/
-├── run_baseline.py        # CLI entrypoint
+├── run_baseline.py            # CLI: uncompressed eval
+├── run_qwen_compression.py    # CLI: compress (Wanda / AWQ) then eval
 ├── requirements.txt
 ├── src/
-│   ├── model.py           # HF causal-LM loader + batched generate
-│   ├── gsm8k.py           # 4-shot CoT prompt, last-number extraction, exact match
-│   └── humaneval.py       # generate, truncate at stop tokens, subprocess exec w/ timeout
-└── results/               # JSON dumps, one per run
+│   ├── model.py               # HF causal-LM loader + batched generate
+│   ├── gsm8k.py               # 4-shot CoT prompt, last-number extraction, exact match
+│   ├── humaneval.py           # generate, truncate at stop tokens, subprocess exec w/ timeout
+│   └── compression/
+│       ├── wanda.py           # Wanda pruning (generic HF decoder-only)
+│       └── awq_quant.py       # AWQ INT4 quantization via autoawq (CUDA only)
+└── results/                   # JSON dumps, one per run
 ```
 
 ## Setup
@@ -72,19 +76,61 @@ experiments described in the proposal:
 Realistic options: UCLA Hoffman2 (request a GPU node), Lambda Labs A100
 hourly, Colab Pro A100, or AWS g5.xlarge / g5.12xlarge.
 
-## What's next (compression wiring)
+## Compression runs
 
-1. **Wanda** — clone the Wanda repo, run their pruning script on a base
-   LLaMA checkpoint to produce a pruned `state_dict`. Wrap loading in
-   `src/model.py` so we can do
-   `LM("meta-llama/Llama-3.2-3B-Instruct", weights_override="...wanda.pt")`.
-2. **AWQ** — install `autoawq`; load via
-   `AutoAWQForCausalLM.from_quantized(...)`. Add a `--quant awq` flag to
-   the CLI that swaps the loader.
-3. Re-run `run_baseline.py --tag wanda-2:4` / `--tag awq-int4` so result
-   JSONs are directly comparable.
-4. Add a third task (TriviaQA or MMLU-flash) to cover "factual recall" per
-   the proposal's three-axis hypothesis.
+`run_qwen_compression.py` is the compression analogue of `run_baseline.py`.
+It loads a model, compresses it in place (Wanda) or quantizes it (AWQ),
+then runs the same GSM8K / HumanEval evaluators so the JSON files line up
+exactly with the baselines.
+
+### Setup on Colab (GPU runtime)
+
+```bash
+pip install -r requirements.txt
+# AWQ only; Wanda has no extra deps. CUDA required.
+pip install autoawq
+```
+
+### Wanda (unstructured 50%)
+
+```bash
+python run_qwen_compression.py --method wanda --task both --limit 20
+```
+
+### Wanda (2:4 structured, save the pruned model for reuse)
+
+```bash
+python run_qwen_compression.py \
+    --method wanda --sparsity-type 2:4 \
+    --task both --limit 50 \
+    --save-compressed ./compressed/qwen-wanda-2-4
+
+# Later, skip the prune step and just re-eval:
+python run_qwen_compression.py --method wanda --task humaneval --limit -1 \
+    --load-compressed ./compressed/qwen-wanda-2-4
+```
+
+### AWQ INT4
+
+```bash
+python run_qwen_compression.py --method awq --task both --limit 20 \
+    --save-compressed ./compressed/qwen-awq-w4g128
+```
+
+### Colab notebook
+
+`notebooks/run_qwen_compression_colab.ipynb` clones the repo, installs
+deps, runs the FP16 baseline + Wanda (unstructured + 2:4) + AWQ, and
+prints a summary table — all end-to-end on a T4 runtime.
+
+### Notes
+- Wanda uses WikiText-2 as calibration (`--nsamples 128 --seqlen 2048` by
+  default); the paper's C4 default works too but takes longer to download.
+- AWQ requires CUDA (the `autoawq` kernels are CUDA-only). Run AWQ on
+  Colab, not on a Mac.
+- For LLaMA: same script, just `--model meta-llama/Llama-3.2-3B-Instruct`.
+- A future `scripts/compare.py` should read two JSONs (baseline +
+  compressed) and produce a per-task delta table.
 
 ## Output schema
 
