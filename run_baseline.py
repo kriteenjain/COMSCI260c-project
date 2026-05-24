@@ -22,13 +22,24 @@ from pathlib import Path
 from src.model import LM
 from src import gsm8k, humaneval
 
+MODEL_PRESETS = {
+    "qwen-1.5b": "Qwen/Qwen2.5-1.5B-Instruct",
+    "llama2-7b": "meta-llama/Llama-2-7b-hf",
+}
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument(
+        "--preset",
+        choices=sorted(MODEL_PRESETS.keys()),
+        default="qwen-1.5b",
+        help="Named model preset to run.",
+    )
+    ap.add_argument(
         "--model",
-        default="Qwen/Qwen2.5-1.5B-Instruct",
-        help="HF model id. Defaults to an open ~1.5B model that works on Mac MPS.",
+        default=None,
+        help="Optional HF model id. Overrides --preset when provided.",
     )
     ap.add_argument(
         "--task",
@@ -52,12 +63,13 @@ def main() -> int:
         default="results",
     )
     args = ap.parse_args()
+    model_name = args.model or MODEL_PRESETS[args.preset]
 
     limit = None if args.limit is None or args.limit < 0 else args.limit
 
     t0 = time.time()
-    print(f"[load] {args.model}", flush=True)
-    lm = LM(args.model)
+    print(f"[load] {model_name}", flush=True)
+    lm = LM(model_name)
     info = lm.info()
     print(f"[load] device={info['device']} dtype={info['dtype']} n_params={info['n_params']:,}", flush=True)
 
@@ -84,7 +96,7 @@ def main() -> int:
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    model_slug = args.model.replace("/", "_")
+    model_slug = model_name.replace("/", "_")
     stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
     out_path = out_dir / f"{stamp}_{args.tag}_{model_slug}.json"
     with open(out_path, "w") as f:
