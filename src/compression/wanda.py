@@ -130,6 +130,17 @@ def _capture_layer0_inputs(model, samples, device):
             super().__init__()
             self.layer = layer
 
+        def __getattr__(self, name):
+            # transformers >=4.50 inspects per-layer attributes like
+            # `decoder_layer.attention_type` to pick a causal mask variant
+            # before calling forward. Fall through to the wrapped layer so
+            # those reads keep working while we still intercept forward().
+            try:
+                return super().__getattr__(name)
+            except AttributeError:
+                layer = super().__getattr__("layer")
+                return getattr(layer, name)
+
         def forward(self, hidden_states, **kwargs):
             inps[cache["i"]] = hidden_states  # type: ignore[index]
             cache["i"] = cache["i"] + 1  # type: ignore[operator]
