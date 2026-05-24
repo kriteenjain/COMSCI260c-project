@@ -14,9 +14,48 @@ Compression and Acceleration." MLSys 2024 (Best Paper).
 
 from __future__ import annotations
 
+import contextlib
 import gc
 import os
 from typing import Tuple
+
+
+@contextlib.contextmanager
+def _patch_autoawq_catcher_attrs():
+    """Scoped monkey-patch of ``nn.Module.__getattr__``.
+
+    autoawq's ``init_quant`` wraps the first decoder block in a local
+    ``Catcher(nn.Module)`` class that stores the original layer as
+    ``self.module`` but does not delegate attribute access. transformers
+    >=4.50 reads ``decoder_layer.attention_type`` *before* invoking
+    ``forward`` (to pick a sliding-window vs full causal mask), so the
+    Catcher raises ``AttributeError`` and quantization dies before it
+    starts.
+
+    We patch ``nn.Module.__getattr__`` to fall through to ``self.module``
+    iff the instance is a class literally named ``Catcher`` that has a
+    submodule named ``module``. The patch is only active while the
+    context manager is open, so nothing else in the model is affected.
+    """
+    import torch.nn as nn
+
+    original = nn.Module.__getattr__
+
+    def patched(self, name):
+        try:
+            return original(self, name)
+        except AttributeError:
+            if type(self).__name__ == "Catcher":
+                modules = self.__dict__.get("_modules") or {}
+                if "module" in modules:
+                    return getattr(modules["module"], name)
+            raise
+
+    nn.Module.__getattr__ = patched
+    try:
+        yield
+    finally:
+        nn.Module.__getattr__ = original
 
 
 def quantize_with_awq(
@@ -60,7 +99,8 @@ def quantize_with_awq(
         "version": version,
     }
     print(f"[awq] running AWQ search + quantize, config={quant_config}", flush=True)
-    model.quantize(tokenizer, quant_config=quant_config)
+    with _patch_autoawq_catcher_attrs():
+        model.quantize(tokenizer, quant_config=quant_config)
 
     os.makedirs(quant_path, exist_ok=True)
     model.save_quantized(quant_path)
