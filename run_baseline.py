@@ -24,7 +24,7 @@ from src import gsm8k, humaneval
 
 MODEL_PRESETS = {
     "qwen-1.5b": "Qwen/Qwen2.5-1.5B-Instruct",
-    "llama2-7b": "meta-llama/Llama-2-7b-hf",
+    "llama-3b": "meta-llama/Llama-3.2-3B-Instruct",
 }
 
 

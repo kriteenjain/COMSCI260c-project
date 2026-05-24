@@ -28,12 +28,12 @@ pip install -r requirements.txt
 ```
 
 The default model (`Qwen/Qwen2.5-1.5B-Instruct`) is open, ~3 GB, and runs
-on Apple Silicon via MPS in fp16. To use LLaMA-2 you need a Hugging Face
+on Apple Silicon via MPS in fp16. To use LLaMA-3.2-3B-Instruct you need a Hugging Face
 token with access to the gated repo:
 
 ```bash
 huggingface-cli login   # paste your read token
-python run_baseline.py --model meta-llama/Llama-2-7b-hf --task both --limit 50
+python run_baseline.py --model meta-llama/Llama-3.2-3B-Instruct --task both --limit 50
 ```
 
 ## Smoke test
@@ -75,9 +75,9 @@ hourly, Colab Pro A100, or AWS g5.xlarge / g5.12xlarge.
 ## What's next (compression wiring)
 
 1. **Wanda** — clone the Wanda repo, run their pruning script on a base
-   LLaMA-2 checkpoint to produce a pruned `state_dict`. Wrap loading in
+   LLaMA checkpoint to produce a pruned `state_dict`. Wrap loading in
    `src/model.py` so we can do
-   `LM("meta-llama/Llama-2-7b-hf", weights_override="...wanda.pt")`.
+   `LM("meta-llama/Llama-3.2-3B-Instruct", weights_override="...wanda.pt")`.
 2. **AWQ** — install `autoawq`; load via
    `AutoAWQForCausalLM.from_quantized(...)`. Add a `--quant awq` flag to
    the CLI that swaps the loader.
