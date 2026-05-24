@@ -1,0 +1,143 @@
+{
+  "tag": "llama3b-baseline20",
+  "model_info": {
+    "model": "meta-llama/Llama-3.2-3B-Instruct",
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "n_params": 3212749824
+  },
+  "limit": 20,
+  "batch_size": 1,
+  "started_at": "2026-05-24T03:49:24.221339Z",
+  "tasks": {
+    "humaneval": {
+      "task": "humaneval",
+      "n": 20,
+      "n_passed": 16,
+      "pass@1": 0.8,
+      "examples": [
+        {
+          "task_id": "HumanEval/0",
+          "passed": true,
+          "error": "",
+          "completion": "    numbers.sort()\n    for i in range(1, len(numbers)):\n        if numbers[i] - numbers[i - 1] < threshold:\n            return True\n    return False\n"
+        },
+        {
+          "task_id": "HumanEval/1",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    stack = []\n    result = []\n    for char in paren_string.replace(\" \", \"\"):\n        if char == '(':\n            stack.append(char)\n        elif char == ')':\n            if stack:\n                stack.pop()\n            else:\n                result.append(char)\n    return result\n"
+        },
+        {
+          "task_id": "HumanEval/2",
+          "passed": true,
+          "error": "",
+          "completion": "    return number - int(number)  # subtract the integer part from the number"
+        },
+        {
+          "task_id": "HumanEval/3",
+          "passed": true,
+          "error": "",
+          "completion": "    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False\n"
+        },
+        {
+          "task_id": "HumanEval/4",
+          "passed": true,
+          "error": "",
+          "completion": "    # Calculate the mean of the numbers\n    mean = sum(numbers) / len(numbers)\n\n    # Calculate the absolute difference between each number and the mean\n    absolute_deviations = [abs(num - mean) for num in numbers]\n\n    # Calculate the mean of the absolute deviations\n    mad = sum(absolute_deviations) / len(numbers)\n\n    return mad\n\n"
+        },
+        {
+          "task_id": "HumanEval/5",
+          "passed": true,
+          "error": "",
+          "completion": "    result = []\n    for i in range(len(numbers)):\n        if i < len(numbers) - 1:\n            result.append(numbers[i])\n            result.append(delimeter)\n        else:\n            result.append(numbers[i])\n    return result\n\n"
+        },
+        {
+          "task_id": "HumanEval/6",
+          "passed": true,
+          "error": "",
+          "completion": "    def max_depth(s: str) -> int:\n        \"\"\" Helper function to calculate the maximum depth of a string of parentheses.\n        \"\"\"\n        max_depth = 0\n        current_depth = 0\n        for char in s:\n            if char == '(':\n                current_depth += 1\n                max_depth = max(max_depth, current_depth)\n            elif char == ')':\n                current_depth -= 1\n        return max_depth\n\n    # Split the input string into groups of parentheses\n    groups = paren_string.split()\n\n    # Calculate the maximum depth of each group\n    return [max_depth(group) for group in groups]  # type: List[int]  # noqa: E501\n\n"
+        },
+        {
+          "task_id": "HumanEval/7",
+          "passed": true,
+          "error": "",
+          "completion": "    return [s for s in strings if substring in s]  # type: ignore\n\n"
+        },
+        {
+          "task_id": "HumanEval/8",
+          "passed": true,
+          "error": "",
+          "completion": "    sum_result = 0\n    product_result = 1\n    for num in numbers:\n        sum_result += num\n        product_result *= num\n    return sum_result, product_result\n\n"
+        },
+        {
+          "task_id": "HumanEval/9",
+          "passed": true,
+          "error": "",
+          "completion": "    if not numbers:\n        return []\n    result = [numbers[0]]\n    for i in range(1, len(numbers)):\n        result.append(max(result[-1], numbers[i]))\n    return result\n\n"
+        },
+        {
+          "task_id": "HumanEval/10",
+          "passed": false,
+          "error": "UnboundLocalError: cannot access local variable 'i' where it is not associated with a value",
+          "completion": "    # Find the longest postfix of supplied string that is a palindrome\n    for i in range(len(string), 0, -1):\n        if string.startswith(string[-i:]):\n            break\n\n    # Append to the end of the string reverse of a string prefix that comes before the palindromic suffix\n    return string + string[:i][::-1]\n\n"
+        },
+        {
+          "task_id": "HumanEval/11",
+          "passed": true,
+          "error": "",
+          "completion": "    return ''.join('1' if x!= y else '0' for x, y in zip(a, b))  # zip() pairs corresponding elements from a and b, then compare them and return '1' if they are different, '0' otherwise. The result is a list of '1's and '0's, which is then joined into a string."
+        },
+        {
+          "task_id": "HumanEval/12",
+          "passed": true,
+          "error": "",
+          "completion": "    if not strings:\n        return None\n    return max(strings, key=len)  # type: ignore [return-value]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [return-value]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  # noqa: E501\n    # type: ignore [no-value-assign]  #"
+        },
+        {
+          "task_id": "HumanEval/13",
+          "passed": true,
+          "error": "",
+          "completion": "    while b:\n        a, b = b, a % b\n    return a\n"
+        },
+        {
+          "task_id": "HumanEval/14",
+          "passed": true,
+          "error": "",
+          "completion": "    prefixes = []\n    for i in range(1, len(string) + 1):\n        prefixes.append(string[:i])\n    return prefixes\n\n"
+        },
+        {
+          "task_id": "HumanEval/15",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    return''.join(str(i) for i in range(n + 1))  # +1 to include n in the sequence\n"
+        },
+        {
+          "task_id": "HumanEval/16",
+          "passed": true,
+          "error": "",
+          "completion": "    # Convert the string to lower case to ignore case sensitivity\n    lower_case_string = string.lower()\n    \n    # Use a set to store unique characters\n    unique_chars = set(lower_case_string)\n    \n    # Return the number of unique characters\n    return len(unique_chars)  # Changed from return len(unique_chars) to return len(unique_chars) to match the problem description\n"
+        },
+        {
+          "task_id": "HumanEval/17",
+          "passed": true,
+          "error": "",
+          "completion": "    music_list = music_string.split()\n    beats_list = []\n    for note in music_list:\n        if note == 'o':\n            beats_list.append(4)\n        elif note == 'o|':\n            beats_list.append(2)\n        elif note == '.|':\n            beats_list.append(1)\n    return beats_list\n"
+        },
+        {
+          "task_id": "HumanEval/18",
+          "passed": true,
+          "error": "",
+          "completion": "    count = 0\n    for i in range(len(string)):\n        if string[i:].startswith(substring):\n            count += 1\n    return count\n"
+        },
+        {
+          "task_id": "HumanEval/19",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    # Define a dictionary to map the input strings to their corresponding integer values\n    num_dict = {'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,'six': 6,'seven': 7, 'eight': 8, 'nine': 9}\n    \n    # Split the input string into a list of numbers\n    numbers_list = numbers.split()\n    \n    # Sort the list of numbers based on their integer values\n    sorted_numbers = sorted(numbers_list, key=lambda x: num_dict[x])\n    \n    # Join the sorted list of numbers back into a string\n    sorted_string =''.join(sorted_numbers)\n    \n    return sorted_string\n"
+        }
+      ]
+    }
+  },
+  "elapsed_s": 461.73
+}
