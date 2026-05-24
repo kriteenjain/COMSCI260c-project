@@ -1,0 +1,143 @@
+{
+  "tag": "colab-he20-leftpad",
+  "model_info": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "n_params": 1543714304
+  },
+  "limit": 20,
+  "batch_size": 4,
+  "started_at": "2026-05-23T23:47:58.953248Z",
+  "tasks": {
+    "humaneval": {
+      "task": "humaneval",
+      "n": 20,
+      "n_passed": 14,
+      "pass@1": 0.7,
+      "examples": [
+        {
+          "task_id": "HumanEval/0",
+          "passed": true,
+          "error": "",
+          "completion": "    for i in range(len(numbers)):\n        for j in range(i + 1, len(numbers)):\n            if abs(numbers[i] - numbers[j]) < threshold:\n                return True\n\n    return False# TODO: Implement this function.\n"
+        },
+        {
+          "task_id": "HumanEval/1",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    # TODO: Implement me!\n    pass\n"
+        },
+        {
+          "task_id": "HumanEval/2",
+          "passed": true,
+          "error": "",
+          "completion": "    return number - int(number)\n"
+        },
+        {
+          "task_id": "HumanEval/3",
+          "passed": true,
+          "error": "",
+          "completion": "    balance = 0\n\n    for op in operations:\n        balance += op\n        if balance < 0:\n            return True\n\n    return False\n\n"
+        },
+        {
+          "task_id": "HumanEval/4",
+          "passed": true,
+          "error": "",
+          "completion": "    if len(numbers) == 0:\n        return 0\n\n    total = sum(numbers)\n    mean = total / len(numbers)\n\n    abs_diffs = [abs(x - mean) for x in numbers]\n    return sum(abs_diffs) / len(abs_diffs)\n\n"
+        },
+        {
+          "task_id": "HumanEval/5",
+          "passed": true,
+          "error": "",
+          "completion": "    if not numbers:\n        return []\n\n    result = [numbers[0]]\n    for i in range(1, len(numbers)):\n        result.append(delimeter)\n        result.append(numbers[i])\n    return result\n"
+        },
+        {
+          "task_id": "HumanEval/6",
+          "passed": false,
+          "error": "RecursionError: maximum recursion depth exceeded",
+          "completion": "    return [max(parse_nested_parens(group.strip()) if group else []) for group in paren_string.split()]\n\n\n"
+        },
+        {
+          "task_id": "HumanEval/7",
+          "passed": true,
+          "error": "",
+          "completion": "    return [s for s in strings if substring in s]  # TODO: implement this function\n\n"
+        },
+        {
+          "task_id": "HumanEval/8",
+          "passed": true,
+          "error": "",
+          "completion": "    if not numbers:\n        return (0, 1)\n\n    total_sum = 0\n    total_product = 1\n\n    for number in numbers:\n        total_sum += number\n        total_product *= number\n\n    return (total_sum, total_product)# This is an example code snippet that demonstrates how to use the `sum_product` function. It creates a list of integers and then calls the function with this list as its argument. The result is printed out.\n\nnumbers = [1, 2, 3, 4]\nresult = sum_product(numbers)"
+        },
+        {
+          "task_id": "HumanEval/9",
+          "passed": false,
+          "error": "IndexError: list index out of range",
+          "completion": "    max_ = numbers[0]\n    result = []\n    for number in numbers:\n        if number > max_:\n            max_ = number\n        result.append(max_)\n    return result\n\n"
+        },
+        {
+          "task_id": "HumanEval/10",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    # If empty, just return it\n    if not string:\n        return string\n\n    # Get the length of the input string\n    n = len(string)\n\n    # Find the longest substring which is a palindrome\n    for i in range(n):\n        if is_palindrome(string[i:]):\n            break\n\n    # Return the result by appending the reversed prefix and then the original string\n    return string[:n-i] + string\n\n"
+        },
+        {
+          "task_id": "HumanEval/11",
+          "passed": true,
+          "error": "",
+          "completion": "    # Your code here\n    res = ''\n    for i in range(len(a)):\n        if a[i] == b[i]:\n            res += '0'\n        else:\n            res += '1'\n\n    return res\n"
+        },
+        {
+          "task_id": "HumanEval/12",
+          "passed": true,
+          "error": "",
+          "completion": "    if not strings:\n        return None\n\n    max_len = 0\n    for string in strings:\n        if len(string) > max_len:\n            max_len = len(string)\n            result = string\n\n    return result# TODO: Implement this function.\n"
+        },
+        {
+          "task_id": "HumanEval/13",
+          "passed": true,
+          "error": "",
+          "completion": "    while b != 0:\n        t = b\n        b = a % b\n        a = t\n    return a\n\n"
+        },
+        {
+          "task_id": "HumanEval/14",
+          "passed": true,
+          "error": "",
+          "completion": "    return [string[:i] for i in range(1, len(string)+1)]\n\n"
+        },
+        {
+          "task_id": "HumanEval/15",
+          "passed": true,
+          "error": "",
+          "completion": "    return \" \".join(str(i) for i in range(n + 1))\n"
+        },
+        {
+          "task_id": "HumanEval/16",
+          "passed": true,
+          "error": "",
+          "completion": "    return len(set(string.lower()))\n"
+        },
+        {
+          "task_id": "HumanEval/17",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    pass# TODO implement me!\n"
+        },
+        {
+          "task_id": "HumanEval/18",
+          "passed": true,
+          "error": "",
+          "completion": "    count = 0\n    for i in range(len(string)):\n        if string[i:].startswith(substring):\n            count += 1\n    return count\n\n"
+        },
+        {
+          "task_id": "HumanEval/19",
+          "passed": false,
+          "error": "AssertionError: ",
+          "completion": "    # TODO: Implement this function.\n    return ''\n\n"
+        }
+      ]
+    }
+  },
+  "elapsed_s": 329.37
+}
