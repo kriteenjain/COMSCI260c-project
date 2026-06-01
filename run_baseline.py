@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 
 from src.model import LM
-from src import gsm8k, humaneval
+from src import gsm8k, humaneval, musique
 
 MODEL_PRESETS = {
     "qwen-1.5b": "Qwen/Qwen2.5-1.5B-Instruct",
@@ -43,7 +43,7 @@ def main() -> int:
     )
     ap.add_argument(
         "--task",
-        choices=["gsm8k", "humaneval", "both"],
+        choices=["gsm8k", "humaneval", "musique", "both"],
         default="both",
     )
     ap.add_argument(
@@ -91,6 +91,11 @@ def main() -> int:
         r = humaneval.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[humaneval] pass@1={r['pass@1']:.3f}  ({r['n_passed']}/{r['n']})", flush=True)
         results["tasks"]["humaneval"] = r
+
+    if args.task in ("musique", "both"):
+        r = musique.evaluate(lm, limit=limit, batch_size=args.batch_size)
+        print(f"[musique] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
+        results["tasks"]["musique"] = r
 
     results["elapsed_s"] = round(time.time() - t0, 2)
 
