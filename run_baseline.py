@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 
 from src.model import LM
-from src import gsm8k, humaneval, musique, nq_open
+from src import gsm8k, humaneval, musique, nq_open, squad
 
 MODEL_PRESETS = {
     "qwen-1.5b": "Qwen/Qwen2.5-1.5B-Instruct",
@@ -43,7 +43,7 @@ def main() -> int:
     )
     ap.add_argument(
         "--task",
-        choices=["gsm8k", "humaneval", "musique", "nq_open", "both"],
+        choices=["gsm8k", "humaneval", "musique", "nq_open", "squad", "both"],
         default="both",
     )
     ap.add_argument(
@@ -101,6 +101,11 @@ def main() -> int:
         r = nq_open.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[nq_open] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
         results["tasks"]["nq_open"] = r
+
+    if args.task in ("squad", "both"):
+        r = squad.evaluate(lm, limit=limit, batch_size=args.batch_size)
+        print(f"[squad] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
+        results["tasks"]["squad"] = r
 
     results["elapsed_s"] = round(time.time() - t0, 2)
 

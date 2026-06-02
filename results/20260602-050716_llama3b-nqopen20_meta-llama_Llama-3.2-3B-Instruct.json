@@ -1,0 +1,212 @@
+{
+  "tag": "llama3b-nqopen20",
+  "model_info": {
+    "model": "meta-llama/Llama-3.2-3B-Instruct",
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "n_params": 3212749824
+  },
+  "limit": 20,
+  "batch_size": 1,
+  "started_at": "2026-06-02T05:06:45.196640Z",
+  "tasks": {
+    "nq_open": {
+      "task": "nq_open",
+      "n": 20,
+      "n_correct": 5,
+      "exact_match": 0.25,
+      "f1": 0.3333333333333333,
+      "examples": [
+        {
+          "question": "when was the last time anyone was on the moon",
+          "gold": [
+            "14 December 1972 UTC",
+            "December 1972"
+          ],
+          "pred": "1972",
+          "exact": false,
+          "f1": 0.6667
+        },
+        {
+          "question": "who wrote he ain't heavy he's my brother lyrics",
+          "gold": [
+            "Bobby Scott",
+            "Bob Russell"
+          ],
+          "pred": "The Hollies",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "how many seasons of the bastard executioner are there",
+          "gold": [
+            "one",
+            "one season"
+          ],
+          "pred": "1",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "when did the eagles win last super bowl",
+          "gold": [
+            "2017"
+          ],
+          "pred": "2018",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "who won last year's ncaa women's basketball",
+          "gold": [
+            "South Carolina"
+          ],
+          "pred": "(no answer provided)",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "when did the isle of wight become an island",
+          "gold": [
+            "During the last Ice Age"
+          ],
+          "pred": "1382",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "love yourself by justin bieber is about who",
+          "gold": [
+            "Rihanna"
+          ],
+          "pred": "His ex",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "who was the ruler of england in 1616",
+          "gold": [
+            "James I"
+          ],
+          "pred": "James I",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "what is the hot coffee mod in san andreas",
+          "gold": [
+            "a normally inaccessible mini-game"
+          ],
+          "pred": "Coffee Stain",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "what is the maximum data rate for the 802.11a standard select one",
+          "gold": [
+            "54\u00a0Mbit/s"
+          ],
+          "pred": "54 Mbps",
+          "exact": false,
+          "f1": 0.5
+        },
+        {
+          "question": "which state is located in the centre of india",
+          "gold": [
+            "Chhattisgarh",
+            "Madhya Pradesh"
+          ],
+          "pred": "Rajasthan",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "who sang i ran all the way home",
+          "gold": [
+            "The Impalas"
+          ],
+          "pred": "LeAnn Rimes",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "where did the last name wallace come from",
+          "gold": [
+            "a Scottish surname"
+          ],
+          "pred": "Scotland",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "who was the actor that played ben stone on law and order",
+          "gold": [
+            "Michael Moriarty"
+          ],
+          "pred": "Sam Waterston",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "who does the voice of nala in the lion king",
+          "gold": [
+            "Niketa Calame",
+            "Sally Dworsky",
+            "Moira Kelly",
+            "Laura Williams"
+          ],
+          "pred": "Moira Kelly",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "who plays gram on the young and the restless",
+          "gold": [
+            "Max Shippee"
+          ],
+          "pred": "Eric Braeden",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "what is the oath that new citizens take",
+          "gold": [
+            "United States Oath of Allegiance"
+          ],
+          "pred": "The Pledge of Allegiance",
+          "exact": false,
+          "f1": 0.5
+        },
+        {
+          "question": "who is under the mask of darth vader",
+          "gold": [
+            "Anakin Skywalker"
+          ],
+          "pred": "Anakin Skywalker",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "who had a baby at 100 in the bible",
+          "gold": [
+            "Sarah",
+            "Abraham"
+          ],
+          "pred": "Sarah",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "what age do you need to be to buy a bb gun",
+          "gold": [
+            "18"
+          ],
+          "pred": "18",
+          "exact": true,
+          "f1": 1.0
+        }
+      ]
+    }
+  },
+  "elapsed_s": 55.99
+}
