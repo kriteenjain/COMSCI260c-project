@@ -1,0 +1,164 @@
+{
+  "tag": "llama3b-baseline20",
+  "model_info": {
+    "model": "meta-llama/Llama-3.2-3B-Instruct",
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "n_params": 3212749824
+  },
+  "limit": 20,
+  "batch_size": 1,
+  "started_at": "2026-06-02T04:41:14.215493Z",
+  "tasks": {
+    "musique": {
+      "task": "musique",
+      "n": 20,
+      "n_correct": 8,
+      "exact_match": 0.4,
+      "f1": 0.5452380952380952,
+      "examples": [
+        {
+          "question": "Who is the spouse of the Green performer?",
+          "gold": "Miquette Giraudy",
+          "pred": "Miquette Giraudy.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Who founded the company that distributed the film UHF?",
+          "gold": "Mike Medavoy",
+          "pred": "Orion Pictures.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "What administrative territorial entity is the owner of Ciudad Deportiva located?",
+          "gold": "Tamaulipas",
+          "pred": "Municipality.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "Where is Ulrich Walter's employer headquartered?",
+          "gold": "Cologne",
+          "pred": "Germany.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "Which company owns the manufacturer of Learjet 60?",
+          "gold": "Bombardier Inc.",
+          "pred": "Bombardier Aerospace.",
+          "exact": false,
+          "f1": 0.6667
+        },
+        {
+          "question": "Who is the child of Caroline LeRoy's spouse?",
+          "gold": "Fletcher Webster",
+          "pred": "Fletcher Webster.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Who is the grandmother of Philippe, Duke of Orl\u00e9ans?",
+          "gold": "Marie de' Medici",
+          "pred": "Marie de' Medici.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What is the goal of the group that European Movement Germany is a member of?",
+          "gold": "European integration",
+          "pred": "European integration.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What company succeeded the owner of Empire Sports Network?",
+          "gold": "Time Warner Cable",
+          "pred": "Windjammer Communications.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "What province shares a border with the province where Lago District is located?",
+          "gold": "Cabo Delgado Province",
+          "pred": "Niassa.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "What league does the team that plays in Stadio Ciro Vigorito play for?",
+          "gold": "Lega Pro Prima Divisione",
+          "pred": "Lega Pro Prima Divisione.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What is a notable work written by the author of The Timothy files?",
+          "gold": "Anderson Tapes",
+          "pred": "The Anderson Tapes.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "In which borough was Callum McManaman born?",
+          "gold": "Knowsley",
+          "pred": "Knowsley.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What other county does the county where Imperial is located share a border with?",
+          "gold": "Crockett County",
+          "pred": "Crockett County.",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "In what county is William W. Blair's birthplace located?",
+          "gold": "Orleans County",
+          "pred": "Orleans.",
+          "exact": false,
+          "f1": 0.6667
+        },
+        {
+          "question": "What award did the author of The Red Tree receive?",
+          "gold": "Academy Award for Best Animated Short Film",
+          "pred": "None. (There is no mention of an author.)",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "Where was Tyler MacDuff's child educated?",
+          "gold": "Blair High School",
+          "pred": "Blair International Baccalaureate School.",
+          "exact": false,
+          "f1": 0.5714
+        },
+        {
+          "question": "Who is the spouse of the Rabbit Hole's producer?",
+          "gold": "Keith Urban",
+          "pred": "Nicole Kidman.",
+          "exact": false,
+          "f1": 0.0
+        },
+        {
+          "question": "Who is the child of Sigrid Eskilsdotter's child?",
+          "gold": "Svante Stensson Sture",
+          "pred": "Svante Turesson Bielke.",
+          "exact": false,
+          "f1": 0.3333
+        },
+        {
+          "question": "In which county is Kimbrough Memorial Stadium located?",
+          "gold": "Randall County",
+          "pred": "Randall.",
+          "exact": false,
+          "f1": 0.6667
+        }
+      ]
+    }
+  },
+  "elapsed_s": 117.14
+}
