@@ -8,7 +8,7 @@
   },
   "limit": 20,
   "batch_size": 1,
-  "started_at": "2026-06-02T05:25:22.303268Z",
+  "started_at": "2026-06-02T05:34:01.706770Z",
   "tasks": {
     "squad": {
       "task": "squad",
@@ -24,7 +24,7 @@
             "Denver Broncos",
             "Denver Broncos"
           ],
-          "pred": "Denver Broncos.",
+          "pred": "Denver Broncos",
           "exact": true,
           "f1": 1.0
         },
@@ -35,7 +35,7 @@
             "Carolina Panthers",
             "Carolina Panthers"
           ],
-          "pred": "Panthers.",
+          "pred": "Panthers",
           "exact": false,
           "f1": 0.6667
         },
@@ -46,7 +46,7 @@
             "Levi's Stadium",
             "Levi's Stadium in the San Francisco Bay Area at Santa Clara, California."
           ],
-          "pred": "Levi's Stadium.",
+          "pred": "Levi's Stadium",
           "exact": true,
           "f1": 1.0
         },
@@ -57,7 +57,7 @@
             "Denver Broncos",
             "Denver Broncos"
           ],
-          "pred": "Broncos.",
+          "pred": "Broncos",
           "exact": false,
           "f1": 0.6667
         },
@@ -68,7 +68,7 @@
             "gold",
             "gold"
           ],
-          "pred": "Gold.",
+          "pred": "Gold",
           "exact": true,
           "f1": 1.0
         },
@@ -79,7 +79,7 @@
             "gold-themed",
             "\"golden anniversary"
           ],
-          "pred": "Golden anniversary.",
+          "pred": "Golden anniversary",
           "exact": true,
           "f1": 1.0
         },
@@ -90,7 +90,7 @@
             "February 7",
             "February 7, 2016"
           ],
-          "pred": "February 7.",
+          "pred": "February 7",
           "exact": true,
           "f1": 1.0
         },
@@ -101,7 +101,7 @@
             "American Football Conference",
             "American Football Conference"
           ],
-          "pred": "American Football Conference.",
+          "pred": "American Football Conference",
           "exact": true,
           "f1": 1.0
         },
@@ -112,7 +112,7 @@
             "gold-themed",
             "gold"
           ],
-          "pred": "Golden anniversary.",
+          "pred": "Golden anniversary",
           "exact": true,
           "f1": 1.0
         },
@@ -123,7 +123,7 @@
             "American Football Conference",
             "American Football Conference"
           ],
-          "pred": "American Football Conference.",
+          "pred": "American Football Conference",
           "exact": true,
           "f1": 1.0
         },
@@ -134,7 +134,7 @@
             "February 7",
             "February 7, 2016"
           ],
-          "pred": "February 7, 2016.",
+          "pred": "February 7, 2016",
           "exact": true,
           "f1": 1.0
         },
@@ -145,7 +145,7 @@
             "Denver Broncos",
             "Denver Broncos"
           ],
-          "pred": "Broncos.",
+          "pred": "Broncos",
           "exact": false,
           "f1": 0.6667
         },
@@ -156,7 +156,7 @@
             "Levi's Stadium",
             "Levi's Stadium in the San Francisco Bay Area at Santa Clara"
           ],
-          "pred": "Levi's Stadium.",
+          "pred": "Levi's Stadium",
           "exact": true,
           "f1": 1.0
         },
@@ -167,7 +167,7 @@
             "Santa Clara",
             "Santa Clara"
           ],
-          "pred": "Santa Clara.",
+          "pred": "Santa Clara",
           "exact": true,
           "f1": 1.0
         },
@@ -178,7 +178,7 @@
             "L",
             "Super Bowl L"
           ],
-          "pred": "Super Bowl L.",
+          "pred": "Super Bowl L",
           "exact": true,
           "f1": 1.0
         },
@@ -189,7 +189,7 @@
             "the 2015 season",
             "2015"
           ],
-          "pred": "2015 season.",
+          "pred": "2015 season",
           "exact": true,
           "f1": 1.0
         },
@@ -200,7 +200,7 @@
             "2016",
             "2015"
           ],
-          "pred": "2016.",
+          "pred": "2016",
           "exact": true,
           "f1": 1.0
         },
@@ -211,7 +211,7 @@
             "Santa Clara",
             "Santa Clara"
           ],
-          "pred": "Santa Clara.",
+          "pred": "Santa Clara",
           "exact": true,
           "f1": 1.0
         },
@@ -222,7 +222,7 @@
             "Levi's Stadium",
             "Levi's Stadium"
           ],
-          "pred": "Levi's Stadium.",
+          "pred": "Levi's Stadium",
           "exact": true,
           "f1": 1.0
         },
@@ -233,12 +233,12 @@
             "24\u201310",
             "24\u201310"
           ],
-          "pred": "24\u201310.",
+          "pred": "24\u201310",
           "exact": true,
           "f1": 1.0
         }
       ]
     }
   },
-  "elapsed_s": 36.45
+  "elapsed_s": 30.62
 }

@@ -1,0 +1,244 @@
+{
+  "tag": "qwen-squad20",
+  "model_info": {
+    "model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "device": "cuda",
+    "dtype": "torch.bfloat16",
+    "n_params": 1543714304
+  },
+  "limit": 20,
+  "batch_size": 4,
+  "started_at": "2026-06-02T05:32:19.372148Z",
+  "tasks": {
+    "squad": {
+      "task": "squad",
+      "n": 20,
+      "n_correct": 16,
+      "exact_match": 0.8,
+      "f1": 0.8736263736263737,
+      "examples": [
+        {
+          "question": "Which NFL team represented the AFC at Super Bowl 50?",
+          "gold": [
+            "Denver Broncos",
+            "Denver Broncos",
+            "Denver Broncos"
+          ],
+          "pred": "Denver Broncos",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Which NFL team represented the NFC at Super Bowl 50?",
+          "gold": [
+            "Carolina Panthers",
+            "Carolina Panthers",
+            "Carolina Panthers"
+          ],
+          "pred": "Carolina Panthers",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Where did Super Bowl 50 take place?",
+          "gold": [
+            "Santa Clara, California",
+            "Levi's Stadium",
+            "Levi's Stadium in the San Francisco Bay Area at Santa Clara, California."
+          ],
+          "pred": "Levi's Stadium in the San Francisco Bay Area at Santa Clara, California",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Which NFL team won Super Bowl 50?",
+          "gold": [
+            "Denver Broncos",
+            "Denver Broncos",
+            "Denver Broncos"
+          ],
+          "pred": "Denver Broncos",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What color was used to emphasize the 50th anniversary of the Super Bowl?",
+          "gold": [
+            "gold",
+            "gold",
+            "gold"
+          ],
+          "pred": "Gold",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What was the theme of Super Bowl 50?",
+          "gold": [
+            "\"golden anniversary\"",
+            "gold-themed",
+            "\"golden anniversary"
+          ],
+          "pred": "Golden anniversary",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What day was the game played on?",
+          "gold": [
+            "February 7, 2016",
+            "February 7",
+            "February 7, 2016"
+          ],
+          "pred": "February 7, 2016",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What is the AFC short for?",
+          "gold": [
+            "American Football Conference",
+            "American Football Conference",
+            "American Football Conference"
+          ],
+          "pred": "American Football Conference (AFC)",
+          "exact": false,
+          "f1": 0.8571
+        },
+        {
+          "question": "What was the theme of Super Bowl 50?",
+          "gold": [
+            "\"golden anniversary\"",
+            "gold-themed",
+            "gold"
+          ],
+          "pred": "Golden anniversary",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What does AFC stand for?",
+          "gold": [
+            "American Football Conference",
+            "American Football Conference",
+            "American Football Conference"
+          ],
+          "pred": "American Football Conference",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What day was the Super Bowl played on?",
+          "gold": [
+            "February 7, 2016",
+            "February 7",
+            "February 7, 2016"
+          ],
+          "pred": "February 7, 2016",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Who won Super Bowl 50?",
+          "gold": [
+            "Denver Broncos",
+            "Denver Broncos",
+            "Denver Broncos"
+          ],
+          "pred": "Denver Broncos",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What venue did Super Bowl 50 take place in?",
+          "gold": [
+            "Levi's Stadium",
+            "Levi's Stadium",
+            "Levi's Stadium in the San Francisco Bay Area at Santa Clara"
+          ],
+          "pred": "Levi's Stadium",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What city did Super Bowl 50 take place in?",
+          "gold": [
+            "Santa Clara",
+            "Santa Clara",
+            "Santa Clara"
+          ],
+          "pred": "Levi's Stadium in the San Francisco Bay Area at Santa Clara, California",
+          "exact": false,
+          "f1": 0.3077
+        },
+        {
+          "question": "If Roman numerals were used, what would Super Bowl 50 have been called?",
+          "gold": [
+            "Super Bowl L",
+            "L",
+            "Super Bowl L"
+          ],
+          "pred": "Super Bowl L",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "Super Bowl 50 decided the NFL champion for what season?",
+          "gold": [
+            "2015",
+            "the 2015 season",
+            "2015"
+          ],
+          "pred": "2015",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What year did the Denver Broncos secure a Super Bowl title for the third time?",
+          "gold": [
+            "2015",
+            "2016",
+            "2015"
+          ],
+          "pred": "2015",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What city did Super Bowl 50 take place in?",
+          "gold": [
+            "Santa Clara",
+            "Santa Clara",
+            "Santa Clara"
+          ],
+          "pred": "Levi's Stadium in the San Francisco Bay Area at Santa Clara, California",
+          "exact": false,
+          "f1": 0.3077
+        },
+        {
+          "question": "What stadium did Super Bowl 50 take place in?",
+          "gold": [
+            "Levi's Stadium",
+            "Levi's Stadium",
+            "Levi's Stadium"
+          ],
+          "pred": "Levi's Stadium",
+          "exact": true,
+          "f1": 1.0
+        },
+        {
+          "question": "What was the final score of Super Bowl 50? ",
+          "gold": [
+            "24\u201310",
+            "24\u201310",
+            "24\u201310"
+          ],
+          "pred": "24-10",
+          "exact": false,
+          "f1": 0.0
+        }
+      ]
+    }
+  },
+  "elapsed_s": 56.95
+}
