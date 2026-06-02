@@ -8,7 +8,7 @@ score with exact match and token-level F1 — the standard metrics from the
 paper.
 
 Reference: https://arxiv.org/abs/2108.00573
-Dataset:   StoneyBrookNLP/musique, config musique_ans_v1.0
+Dataset:   bdsaglam/musique, config "answerable" (mirrors musique_ans_v1.0)
 """
 
 from __future__ import annotations
@@ -94,8 +94,8 @@ class MuSiQueItem:
 
 
 def evaluate(lm: LM, limit: int | None = None, batch_size: int = 4) -> dict:
-    # musique_ans_v1.0 contains only answerable examples — no need to filter.
-    ds = load_dataset("StoneyBrookNLP/musique", "musique_ans_v1.0", split="validation")
+    # "answerable" config maps to musique_ans_v1.0 — only answerable examples, no filter needed.
+    ds = load_dataset("bdsaglam/musique", "answerable", split="validation")
     if limit is not None:
         ds = ds.select(range(min(limit, len(ds))))
 
