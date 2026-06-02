@@ -90,7 +90,7 @@ def get_wikitext2_calibration(tokenizer, nsamples: int = 128, seqlen: int = 2048
     method is not very sensitive to the calibration corpus)."""
     from datasets import load_dataset
 
-    ds = load_dataset("wikitext", "wikitext-2-raw-v1", split="train")
+    ds = load_dataset("Salesforce/wikitext", "wikitext-2-raw-v1", split="train")
     text = "\n\n".join(ds["text"])
     enc = tokenizer(text, return_tensors="pt")
     ids = enc.input_ids[0]
