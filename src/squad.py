@@ -109,7 +109,11 @@ def evaluate(lm: LM, limit: int | None = None, batch_size: int = 4) -> dict:
         nonlocal n_correct, total_f1
         completions = lm.generate(prompts, cfg)
         for meta, comp in zip(metas, completions):
-            pred = comp.split("\n")[0].strip()
+            # Take first line, then strip any "Human..."  continuation that
+            # Qwen-Instruct appends on the same line when given plain-text prompts
+            # (e.g. "Denver Broncos.Human resources department is responsible...").
+            pred = comp.split("\n")[0]
+            pred = re.split(r"\.?\s*Human\b", pred)[0].strip().rstrip(".")
             exact, f1 = _score(pred, meta["answers"])
             if exact:
                 n_correct += 1

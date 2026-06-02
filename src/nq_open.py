@@ -116,7 +116,7 @@ def evaluate(lm: LM, limit: int | None = None, batch_size: int = 4) -> dict:
         nonlocal n_correct, total_f1
         completions = lm.generate(prompts, cfg)
         for meta, comp in zip(metas, completions):
-            pred = comp.split("\n")[0].strip()
+            pred = re.split(r"\.?\s*Human\b", comp.split("\n")[0])[0].strip().rstrip(".")
             exact, f1 = _score(pred, meta["answers"])
             if exact:
                 n_correct += 1

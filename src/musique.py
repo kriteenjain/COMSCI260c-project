@@ -114,7 +114,7 @@ def evaluate(lm: LM, limit: int | None = None, batch_size: int = 4) -> dict:
         completions = lm.generate(prompts, cfg)
         for meta, comp in zip(metas, completions):
             # First line only — the model sometimes continues after the answer.
-            pred = comp.split("\n")[0].strip()
+            pred = re.split(r"\.?\s*Human\b", comp.split("\n")[0])[0].strip().rstrip(".")
             exact, f1 = _score(pred, meta["answer"], meta["aliases"])
             if exact:
                 n_correct += 1
