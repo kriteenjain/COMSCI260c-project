@@ -182,6 +182,12 @@ def main() -> int:
 
     limit = None if args.limit < 0 else args.limit
 
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    model_slug = args.model.replace("/", "_")
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    out_path = out_dir / f"{stamp}_{tag}_{model_slug}.json"
+
     results: dict = {
         "tag": tag,
         "method": args.method,
@@ -204,41 +210,42 @@ def main() -> int:
         "tasks": {},
     }
 
+    def _save():
+        results["elapsed_s"] = round(time.time() - t0, 2)
+        with open(out_path, "w") as f:
+            json.dump(results, f, indent=2)
+        print(f"[save] {out_path}", flush=True)
+
     if args.task in ("gsm8k", "both"):
         r = gsm8k.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[gsm8k] accuracy={r['accuracy']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
         results["tasks"]["gsm8k"] = r
+        _save()
 
     if args.task in ("humaneval", "both"):
         r = humaneval.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[humaneval] pass@1={r['pass@1']:.3f}  ({r['n_passed']}/{r['n']})", flush=True)
         results["tasks"]["humaneval"] = r
+        _save()
 
     if args.task in ("musique", "both"):
         r = musique.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[musique] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
         results["tasks"]["musique"] = r
+        _save()
 
     if args.task in ("nq_open", "both"):
         r = nq_open.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[nq_open] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
         results["tasks"]["nq_open"] = r
+        _save()
 
     if args.task in ("squad", "both"):
         r = squad.evaluate(lm, limit=limit, batch_size=args.batch_size)
         print(f"[squad] exact_match={r['exact_match']:.3f}  f1={r['f1']:.3f}  ({r['n_correct']}/{r['n']})", flush=True)
         results["tasks"]["squad"] = r
+        _save()
 
-    results["elapsed_s"] = round(time.time() - t0, 2)
-
-    out_dir = Path(args.out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    model_slug = args.model.replace("/", "_")
-    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-    out_path = out_dir / f"{stamp}_{tag}_{model_slug}.json"
-    with open(out_path, "w") as f:
-        json.dump(results, f, indent=2)
-    print(f"[save] {out_path}", flush=True)
     return 0
 
 
